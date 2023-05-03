@@ -25,14 +25,30 @@ public class CPU_Simulator
             this.processingTime = processingTime;
         }
 
-    /*
-        Simulate running a task by utilizing the sleep method for the duration of
-        the task's processingTime. The processing time is given in milliseconds.
-    */
+        public long getProcessingTime() {
+            return processingTime;
+        }
+
+        public void setProcessingTime(long processingTime) {
+            this.processingTime = processingTime;
+        }
+
+        public String getID() {
+            return ID;
+        }
+
+        public void setID(String ID) {
+            this.ID = ID;
+        }
+
+        /*
+                Simulate running a task by utilizing the sleep method for the duration of
+                the task's processingTime. The processing time is given in milliseconds.
+            */
         @Override
         public void run() {
         try {
-            Thread.sleep(processingTime);
+            Thread.sleep(getProcessingTime());
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
@@ -48,7 +64,7 @@ public class CPU_Simulator
         ArrayList<String> executedTasks = new ArrayList<>();
         for (int i = 0; i < tasks.size(); i++){
             for (int j = i+1; j < tasks.size(); j++){
-                if (tasks.get(i).processingTime > tasks.get(j).processingTime){
+                if (tasks.get(i).getProcessingTime() > tasks.get(j).getProcessingTime()){
                     Collections.swap(tasks, i, j);
                 }
             }
@@ -66,16 +82,6 @@ public class CPU_Simulator
     }
 
     public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        ArrayList<Task> tasks = new ArrayList<>();
-        while (true) {
-            try {
-                Task task = new Task(sc.nextLine(), sc.nextByte());
-                tasks.add(task);
-            } catch (Exception e) {
-                break;
-            }
-        }
-        startSimulation(tasks);
     }
 }
+
