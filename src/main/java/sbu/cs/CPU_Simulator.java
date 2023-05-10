@@ -29,26 +29,21 @@ public class CPU_Simulator
             return processingTime;
         }
 
-        public void setProcessingTime(long processingTime) {
-            this.processingTime = processingTime;
-        }
 
         public String getID() {
             return ID;
         }
 
-        public void setID(String ID) {
-            this.ID = ID;
-        }
 
         /*
                 Simulate running a task by utilizing the sleep method for the duration of
                 the task's processingTime. The processing time is given in milliseconds.
             */
+
         @Override
         public void run() {
         try {
-            Thread.sleep(getProcessingTime());
+            Thread.sleep(this.getProcessingTime());
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
@@ -73,7 +68,7 @@ public class CPU_Simulator
             Thread thread = new Thread(task);
             thread.start();
             try{
-                executedTasks.add(task.ID);
+                executedTasks.add(task.getID());
             } catch (Exception e) {
                 throw new RuntimeException(e);
             }
