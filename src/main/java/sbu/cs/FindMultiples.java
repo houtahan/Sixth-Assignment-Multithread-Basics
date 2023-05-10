@@ -24,8 +24,7 @@ import java.util.HashSet;
 import java.util.Scanner;
 import java.util.Set;
 
-public class FindMultiples
-{
+public class FindMultiples{
     public class DivisionBy3 implements Runnable{
         private int n;
         private ArrayList<Integer> div3 = new ArrayList<>();
