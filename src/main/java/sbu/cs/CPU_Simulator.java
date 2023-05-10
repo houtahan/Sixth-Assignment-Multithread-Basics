@@ -68,6 +68,7 @@ public class CPU_Simulator
             Thread thread = new Thread(task);
             thread.start();
             try{
+                thread.join();
                 executedTasks.add(task.getID());
             } catch (Exception e) {
                 throw new RuntimeException(e);
