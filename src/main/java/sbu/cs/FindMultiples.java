@@ -21,10 +21,10 @@ package sbu.cs;
 
 import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.Scanner;
 import java.util.Set;
 
 public class FindMultiples{
+
     public class DivisionBy3 implements Runnable{
         private int n;
         private ArrayList<Integer> div3 = new ArrayList<>();
@@ -88,7 +88,7 @@ public class FindMultiples{
     */
     public long getSum(int n) {
         ArrayList<Integer> div357 = new ArrayList<>();
-        long sum = 0;
+        int sum = 0;
         DivisionBy3 divisionBy3 = new DivisionBy3(n);
         Thread thread3 = new Thread(divisionBy3);
         DivisionBy5 divisionBy5 = new DivisionBy5(n);
@@ -108,17 +108,18 @@ public class FindMultiples{
         div357.addAll(divisionBy3.getDiv3());
         div357.addAll(divisionBy5.getDiv5());
         div357.addAll(divisionBy7.getDiv7());
-        Set<Integer> set = new HashSet<>(div357);
-        div357.clear();
-        div357.addAll(set);
+        ArrayList<Integer> unique = new ArrayList<>();
         for (int i = 0; i < div357.size(); i++){
-            sum = div357.get(i) + sum;
+            if (!unique.contains(div357.get(i))){
+                unique.add(div357.get(i));
+            }
+        }
+        for (int i = 0; i < unique.size(); i++){
+            sum = unique.get(i) + sum;
         }
         return sum;
     }
 
     public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        int n = sc.nextInt();
     }
 }
